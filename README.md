@@ -1,7 +1,7 @@
 # Calculator library for PHP with unit tests using PHPUnit
 - Supports addition, subtraction, multiplication and division.
 - Designed with testing in mind, includes tests for above features
-- Uses data provider feature in PHPUnit to make testing become more accurate.
+- Uses data provider feature in PHPUnit to produce accurate test results.
 
 ## Dependencies
 1. PHPUnit
