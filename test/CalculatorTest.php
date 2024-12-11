@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Constraint\Callback;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase {
@@ -20,7 +21,7 @@ class CalculatorTest extends TestCase {
 
         $actual = $calculator->add($a, $b);
 
-        $this->assertEquals($expected, $actual, "Addition failed.");
+        $this->assertEquals($expected, $actual, "Addition failed:");
     }
 
     public static function subtractionProvider(): array {
@@ -39,7 +40,7 @@ class CalculatorTest extends TestCase {
 
         $actual = $calculator->subtract($a, $b);
 
-        $this->assertEquals($expected, $actual, "Subtraction failed.");
+        $this->assertEquals($expected, $actual, "Subtraction failed:");
     }
 
     public static function multiplicationProvider(): array {
@@ -59,6 +60,26 @@ class CalculatorTest extends TestCase {
 
         $actual = $calculator->multiply($a, $b);
 
-        $this->assertEquals($expected, $actual, "Multiplication failed.");
+        $this->assertEquals($expected, $actual, "Multiplication failed:");
+    }
+
+    public static function divisionProvider(): array {
+        return [
+            "dividing zeros" => [0, 0, 0],
+            "one divided by zero" => [1, 0, 0],
+            "one divided by one" => [1, 1, 1],
+            "minus one divided by one" => [-1, 1, -1],
+            "four divided by two" => [4, 2, 2],
+            "one point five divided by three" => [1.5, 3, 0.5]
+        ];
+    }
+
+    #[DataProvider("divisionProvider")]
+    public function testDivide(float $a, float $b, float $expected): void {
+        $calculator = new Calculator;
+
+        $actual = $calculator->divide($a, $b);
+
+        $this->assertEquals($expected, $actual, "Division failed:");
     }
 }
