@@ -13,9 +13,9 @@ class Calculator {
     }
 
     public function divide(float $a, float $b): float {
-        // Instead of throwing DivisionByZeroError, we return 0.
+        // Instead of throwing DivisionByZeroError, we return undefined.
         if ($a == 0 || $b == 0) {
-            return 0;
+            return "undefined";
         }
 
         return $a / $b;
